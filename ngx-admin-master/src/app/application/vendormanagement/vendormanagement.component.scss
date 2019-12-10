@@ -1,0 +1,81 @@
+.example-card {
+  max-width: 90%;
+  max-height: auto;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:30px;
+  display: block;
+}
+
+.example-container {
+  height: 380px;
+  overflow: auto;
+}
+
+table {
+    width: 100%;
+    /* text-align: center; */
+}
+
+mat-card-actions{
+  margin-left:250px;
+}
+
+button{
+margin-left:20px;
+}
+
+@media only screen and (max-width:600px){
+  mat-card-actions {
+    margin-left:auto;
+    margin-right:auto;
+    display: block;
+    width: 100%;
+  }
+}
+@media only screen and (max-width:600px){
+  button {
+    margin-left:5px;
+    padding:2px 7px;
+    font-size: 13px;
+  }
+}
+mat-icon{
+  font-size: 20px
+}
+
+.mat-row:hover {
+  background: #bbbbbb;
+}
+
+.example-selected-row {
+  background: #050505;
+}
+
+.text-success{
+  background-color: #3f51b5;
+}
+
+mat-card-header{
+  max-width: 100%;
+  max-height: 50px;
+  margin-left:5px;
+}
+
+#period_selections{
+  margin-left:35%;
+}
+
+#search{
+  margin-left:5%;}
+
+.highlight{
+  background: #002D5F; /* green */
+  -webkit-text-fill-color: rgb(255, 255, 255);
+}
+
+.mat-row:hover {
+  background-color: #3dc7f1;
+  -webkit-text-fill-color: rgb(255, 255, 255);
+}
+
