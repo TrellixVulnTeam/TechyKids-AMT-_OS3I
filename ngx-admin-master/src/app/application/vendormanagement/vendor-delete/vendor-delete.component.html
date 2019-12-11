@@ -1,0 +1,12 @@
+<h5 mat-dialog-title>Delete Vendor</h5>
+<hr>
+<div mat-dialog-content>
+  <div class="mat-typography">
+    <h6 class="font-weight-normal"> Are you sure.! You want to delete the Vendor {{data.vendor_name}}...!</h6>
+  </div>
+</div>
+<hr>
+<div mat-dialog-actions class="float-right">
+    <button mat-stroked-button color="primary" class="mat-card-buttons" (click)="deleteVendor(data.vendor_id)" cdkFocusInitial ><mat-icon matPrefix>delete</mat-icon><b> DELETE</b></button>
+    <button mat-stroked-button color="warn" class="mat-card-buttons" (click)="vendorDeleteComponentMatCardClose()"><mat-icon matPrefix>cancel</mat-icon><b> CANCEL</b></button>
+</div>

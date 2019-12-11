@@ -12,6 +12,7 @@ import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptorService } from './service/token/token-interceptor.service'; 
+import { MaterialModule } from './material-module/material.module';
 
 import {
   NbChatModule,
@@ -30,7 +31,7 @@ import {
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-
+    MaterialModule,
     ThemeModule.forRoot(),
 
     NbSidebarModule.forRoot(),

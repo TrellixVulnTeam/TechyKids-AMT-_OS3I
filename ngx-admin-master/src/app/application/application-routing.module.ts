@@ -35,4 +35,3 @@ const routes: Routes = [{
   exports: [RouterModule]
 })
 export class ApplicationRoutingModule { }
-export const routing = [DashboardComponent,VendormanagementComponent,CostingmanagementComponent]
