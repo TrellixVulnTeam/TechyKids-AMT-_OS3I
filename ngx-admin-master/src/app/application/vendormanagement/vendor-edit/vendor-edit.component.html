@@ -1,0 +1,91 @@
+<nb-card-body class="row justify-content-center align-item-center mt-3 ml-1 mr-1">
+  <form #vendorEditForm="ngForm" class="vendor-edit-form">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="input-group">
+            <input type="text" name="vendor_name"  [ngModel]="vendor_edit_information?.vendor_name" required>
+            <label>Vendor Name</label>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="input-group">
+            <input type="tel" name="mobile_number" [ngModel]="vendor_edit_information?.mobile_number" required>
+            <label>Mobile Number</label>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="input-group">
+            <input type="number" name="account_number" [ngModel]="vendor_edit_information?.account_number" required>
+          <label>Account Number</label>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="input-group">
+            <input type="text" name="service" [ngModel]="vendor_edit_information?.service" required>
+          <label>Service</label>
+        </div>
+      </div>
+      <div class="col-sm-4">
+          <div class="input-group">
+              <input type="text" name="bill_cycle" [ngModel]="vendor_edit_information?.bill_cycle" required>
+            <label>Bill Cycle</label>
+          </div>
+      </div>
+      <div class="col-sm-4">
+          <div class="input-group">
+              <input type="date" name="bill_create_date" [ngModel]="vendor_edit_information?.bill_create_date" required>
+            <label>Bill Create Date</label>
+          </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="input-group">
+            <input type="text" name="purchase_order_number" [ngModel]="vendor_edit_information?.purchase_order_number" required>
+          <label>Purchase Order Number</label>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="input-group">
+          <nb-select style="width: 100%" name="period"  [ngModel]="vendor_edit_information?.period" class="mr-2">
+              <nb-option value="M">Monthly</nb-option>
+              <nb-option value="Q">Quaterly</nb-option>
+              <nb-option value="Y">Yearly</nb-option>
+          </nb-select>
+        </div>
+      </div>
+      <div class="col-sm-4" style="display:none">
+        <div class="input-group">
+            <input type="text" name="vendor_id"  [ngModel]="vendor_edit_information?.vendor_id" required>
+            <label>Vendor Id</label>
+        </div>
+      </div>
+    </div>
+  </form>
+</nb-card-body>
+<nb-card-footer>
+  <div class="row justify-content-center align-item-center ">
+      <div class="col-sm-9"></div>
+      <div class="col-sm-3">
+          <!-- submit button -->
+        <div class="input-group">
+          <button type="button" 
+                  nbButton
+                  status="success"
+                  size="medium" 
+                  class="mr-3" 
+                  (click)="updateVendor(vendorEditForm)"
+                  cdkFocusInitial>
+            Update
+          </button>
+          <!-- cancel button -->
+          <button type="button" 
+                  nbButton 
+                  status="danger" 
+                  size="medium" 
+                  (click)="cancel()"
+                  >
+            Cancel
+          </button>
+        </div>
+      </div>
+  </div>  
+</nb-card-footer>

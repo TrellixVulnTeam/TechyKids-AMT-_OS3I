@@ -29,7 +29,7 @@ class VendorManagementViewSet(viewsets.ModelViewSet):
     
     @transaction.atomic()
     def create(self, request, *args, **kwargs):
-        request.data["created_user"] = request.auth.user.id
+        request.data["created_user"] = request.user.id
         request.data["mobile_number"] = "+91"+request.data["mobile_number"]
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
@@ -42,7 +42,7 @@ class VendorManagementViewSet(viewsets.ModelViewSet):
     
     @transaction.atomic()
     def update(self, request, pk=None):
-        request.data["created_user"] = request.auth.user.id
+        request.data["created_user"] = request.user.id
         instance = self.get_object()
         serializer = self.serializer_class(instance=instance,data=request.data)
         if serializer.is_valid():

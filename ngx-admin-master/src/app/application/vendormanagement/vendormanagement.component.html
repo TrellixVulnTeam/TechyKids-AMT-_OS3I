@@ -1,87 +1,41 @@
 <div class="row justify-content-center align-item-center wow fadeInUp mt-3" data-wow-delay="100ms">
-  <div class="col-md-12">
-    <nb-card>
-      <nb-card-header class="bg-info text-white text-uppercase">
-        <div class="row justify-content-end">
-          <div class="col-md-6">
-              <span class="float-right">vendor</span>
-          </div>
-          <div class="col-md-6">
-            <div class="btn-group float-right">
-
-              <nb-select [(ngModel)]="period_level" (ngModelChange)="selectedPeriod()" class="mr-2">
-                <nb-option value="">All</nb-option>
-                <nb-option value="M">Monthly</nb-option>
-                <nb-option value="Q">Quaterly</nb-option>
-                <nb-option value="Y">Yearly</nb-option>
-              </nb-select>
-                
-                <input type="Search" nbInput fieldSize="small" (keyup) ="search(searching.value)" #searching shape="semi-round" placeholder="Search" >
-            </div>
-          </div>
-        </div>
-      </nb-card-header>
-      <nb-card-body>
-        <div class="example-container mat-elevation-z8">
-          <table mat-table [dataSource]="dataSource" >
-    
-            <ng-container matColumnDef="vendor_id">
-              <th mat-header-cell *matHeaderCellDef> Vendor Id </th>
-              <td mat-cell *matCellDef="let vendor"> {{vendor.vendor_id}} </td>
-            </ng-container>
-    
-            <ng-container matColumnDef="vendor_name">
-              <th mat-header-cell *matHeaderCellDef> Vendor Name </th>
-              <td mat-cell *matCellDef="let vendor"> {{vendor.vendor_name}}
-              </td>
-            </ng-container>
-    
-            <ng-container matColumnDef="mobile_number">
-              <th mat-header-cell *matHeaderCellDef> Mobile Number </th>
-              <td mat-cell *matCellDef="let vendor"> {{vendor.mobile_number}} </td>
-            </ng-container>
-    
-            <ng-container matColumnDef="service">
-              <th mat-header-cell *matHeaderCellDef> Service </th>
-              <td mat-cell *matCellDef="let vendor"> {{vendor.service}} </td>
-            </ng-container>
-    
-            <ng-container matColumnDef='actions'>
-              <th mat-header-cell *matHeaderCellDef> Actions </th>
-              <td mat-cell *matCellDef="let row">
-                  <button md-raised-button >Edit</button> 
-              </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-                          [ngClass]="{'highlight': selectedRowIndex == row.vendor_id}"
-                          (click)="selectedRow(row)"
-                          (mouseover)="row.hovered = true"
-                          (mouseout)="row.hovered = false"></tr>
-          </table>
-        </div>
-      </nb-card-body>
-      <nb-card-footer>
-        <div class="row justify-content-center align-item-center">
-          <div class="col-lg-5">
-            <button nbButton (click)=addVendor() outline nbTooltip="ADD VENDOR" nbTooltipPlacement="top">
-              <nb-icon icon="person-add" pack="eva"></nb-icon>
-            </button>
-            <button nbButton (click)=editVendor()  outline nbTooltip="EDIT VENDOR" nbTooltipPlacement="top">
-              <nb-icon icon="edit-2" pack="eva"></nb-icon>
-            </button>
-            <button nbButton (click)=deleteVendor() outline nbTooltip="DELETE VENDOR" nbTooltipPlacement="top">
-              <nb-icon icon="trash-2" pack="eva" ></nb-icon>
-            </button>
-            <button nbButton (click)=refresh() outline nbTooltip="REFRESH" nbTooltipPlacement="top">
-              <nb-icon icon="sync" pack="eva"></nb-icon>
-            </button>
-          </div>
-        </div>  
-      </nb-card-footer>
-    </nb-card>
-  </div>
+    <div class="col-md-12">
+        <nb-reveal-card [showToggleButton]="false" [revealed]="revealed">
+            <nb-card-front>
+                <nb-card>
+                    <nb-card-header class="bg-info text-white text-uppercase">
+                        <div class="row justify-content-end">
+                            <div class="col-md-6">
+                                <span class="float-right">vendor</span>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="btn-group float-right">
+                                <nb-select [(ngModel)]="period_level" (ngModelChange)="selectedPeriod()" class="mr-2">
+                                <nb-option value="">All</nb-option>
+                                <nb-option value="M">Monthly</nb-option>
+                                <nb-option value="Q">Quaterly</nb-option>
+                                <nb-option value="Y">Yearly</nb-option>
+                                </nb-select>
+                                <input type="Search" nbInput fieldSize="small" (keyup) ="search(searching.value)" #searching shape="semi-round" placeholder="Search" >
+                            </div>
+                            </div>
+                        </div>
+                    </nb-card-header>
+                    <ngx-vendor-table (toggleView)="revealed=$event" (vendor_add)="vendor_toggle_decide=$event" (vendorEditDataGet)="vendor_edit_information=$event"></ngx-vendor-table>
+                </nb-card>
+            </nb-card-front>
+            <nb-card-back>
+                <nb-card *ngIf="vendor_toggle_decide; else vendor_edit">
+                    <nb-card-header class="bg-info text-center text-white text-uppercase">VENDOR ADD</nb-card-header>
+                    <ngx-vendo-add (toggleView)="revealed=$event"></ngx-vendo-add>
+                </nb-card>
+                <ng-template #vendor_edit>    
+                    <nb-card>
+                        <nb-card-header class="bg-info text-center text-white text-uppercase">VENDOR EDIT</nb-card-header>
+                        <ngx-vendor-edit [vendor_edit_information]="vendor_edit_information" (toggleView)="revealed=$event"></ngx-vendor-edit>
+                    </nb-card>
+                </ng-template>
+            </nb-card-back>
+        </nb-reveal-card>
+    </div>
 </div>
-
-
-

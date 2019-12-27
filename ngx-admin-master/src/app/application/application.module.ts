@@ -37,6 +37,9 @@ import { VendorPieComponent } from './dashboard/vendor-pie.component';
 import { VendormanagementComponent } from './vendormanagement/vendormanagement.component';
 import { VendorDeleteComponent } from './vendormanagement/vendor-delete/vendor-delete.component';
 import { CostingmanagementComponent } from './costingmanagement/costingmanagement.component';
+import { VendoAddComponent } from './vendormanagement/vendo-add/vendo-add.component';
+import { VendorTableComponent } from './vendormanagement/vendor-table/vendor-table.component';
+import { VendorEditComponent } from './vendormanagement/vendor-edit/vendor-edit.component';
 
 
 const COMPONENTS = [
@@ -45,11 +48,13 @@ const COMPONENTS = [
   VendorPieComponent,
   VendormanagementComponent,
   VendorDeleteComponent,
+  VendoAddComponent,
+  VendorTableComponent,
   CostingmanagementComponent,
 ];
 
 @NgModule({
-  declarations: [COMPONENTS, ],
+  declarations: [COMPONENTS, VendorEditComponent,],
   imports: [
     CommonModule,
     ApplicationRoutingModule,

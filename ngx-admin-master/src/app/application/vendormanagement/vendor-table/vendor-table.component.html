@@ -1,0 +1,58 @@
+<nb-card-body>
+  <div class="example-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" >
+
+      <ng-container matColumnDef="vendor_id">
+        <th mat-header-cell *matHeaderCellDef> Vendor Id </th>
+        <td mat-cell *matCellDef="let vendor"> {{vendor.vendor_id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="vendor_name">
+        <th mat-header-cell *matHeaderCellDef> Vendor Name </th>
+        <td mat-cell *matCellDef="let vendor"> {{vendor.vendor_name}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="mobile_number">
+        <th mat-header-cell *matHeaderCellDef> Mobile Number </th>
+        <td mat-cell *matCellDef="let vendor"> {{vendor.mobile_number}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="service">
+        <th mat-header-cell *matHeaderCellDef> Service </th>
+        <td mat-cell *matCellDef="let vendor"> {{vendor.service}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef='actions'>
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let row">
+            <button md-raised-button >Edit</button> 
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                    [ngClass]="{'highlight': selectedRowIndex == row.vendor_id}"
+                    (click)="selectedRow(row)"
+                    (mouseover)="row.hovered = true"
+                    (mouseout)="row.hovered = false"></tr>
+    </table>
+  </div>
+</nb-card-body>
+<nb-card-footer>
+  <div class="row justify-content-center align-item-center">
+    <div class="col-lg-5">
+      <button nbButton (click)=addVendor(true) outline nbTooltip="ADD VENDOR" nbTooltipPlacement="top">
+        <nb-icon icon="person-add" pack="eva"></nb-icon>
+      </button>
+      <button nbButton (click)=editVendor(true)  outline nbTooltip="EDIT VENDOR" nbTooltipPlacement="top">
+        <nb-icon icon="edit-2" pack="eva"></nb-icon>
+      </button>
+      <button nbButton (click)=deleteVendor() outline nbTooltip="DELETE VENDOR" nbTooltipPlacement="top">
+        <nb-icon icon="trash-2" pack="eva" ></nb-icon>
+      </button>
+      <button nbButton (click)=refresh() outline nbTooltip="REFRESH" nbTooltipPlacement="top">
+        <nb-icon icon="sync" pack="eva"></nb-icon>
+      </button>
+    </div>
+  </div>  
+</nb-card-footer>

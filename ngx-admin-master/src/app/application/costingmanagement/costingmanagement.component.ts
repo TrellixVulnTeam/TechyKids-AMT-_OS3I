@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'ngx-costingmanagement',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CostingmanagementComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle('Auction Site | CostingDetails');
   }
 
 }
