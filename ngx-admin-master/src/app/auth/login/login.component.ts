@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
       this._loginservice.login({"username":this.username,"password":this.password}).subscribe(
       data =>{
         localStorage.setItem('token', data["access"])
+        localStorage.setItem('refresh-token', data["refresh"])
         this.router.navigate(['application/admin-dashboard']);
       },
       error =>{

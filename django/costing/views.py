@@ -21,18 +21,16 @@ class CostingViewSet(viewsets.ModelViewSet):
     """
     queryset = models.Costing.objects.all()
     serializer_class = serializers.CostingManagementSerializer
-    authentication_classes = [SessionAuthentication,]
     permission_classes = (IsAuthenticated, )
 
     def list(self, request, *args, **kwargs):
-        print("class")
         costing = models.Costing.objects.filter(active=True).all()
         serializer = serializers.CostingManagementMiniSerializer(costing, many=True)
         return response.Response(serializer.data)
 
     @transaction.atomic()
     def create(self, request, *args, **kwargs):
-        request.data["created_user"] = request.auth.user.id
+        request.data["created_user"] = request.user.id
         request.data["active"] = True
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
@@ -44,7 +42,7 @@ class CostingViewSet(viewsets.ModelViewSet):
     @transaction.atomic()
     def update(self, request, pk=None):
         data = request.data.copy()
-        data["created_user"] = request.auth.user.id
+        data["created_user"] = request.user.id
         data["active"] = True
         instance = self.get_object()
         serializer = self.serializer_class(instance=instance,data=data)

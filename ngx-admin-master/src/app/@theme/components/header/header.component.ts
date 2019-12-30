@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
-
+import {Router} from "@angular/router";
+import { LoginService } from '../../../service/login/login.service';
+ 
 import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
@@ -45,7 +47,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private themeService: NbThemeService,
               private userService: UserData,
               private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+              private router:Router,
+              private _loginservice:LoginService,) {
   }
 
   ngOnInit() {
@@ -69,6 +73,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => this.currentTheme = themeName);
+    
+      this.menuService.onItemClick().subscribe(( event ) => {
+        this.onItemSelection(event.item.title);
+      });
+  }
+
+  onItemSelection( title ) {
+    if ( title === 'Log out' ) {
+      var refresh_token = localStorage.getItem('refresh-token')
+      this._loginservice.logout().subscribe(
+        data =>{
+          this.router.navigate(['auth/login']);
+        },
+        error =>{
+          console.log(error)
+        }
+      )
+      
+    } 
   }
 
   ngOnDestroy() {

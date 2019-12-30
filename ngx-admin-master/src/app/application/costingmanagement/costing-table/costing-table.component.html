@@ -1,0 +1,76 @@
+<nb-card-body>
+  <div class="example-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" >
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let costing"> {{costing.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="vendor_name">
+        <th mat-header-cell *matHeaderCellDef> Vendor Name </th>
+        <td mat-cell *matCellDef="let costing"> {{costing.vendor_name}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="invoice_number">
+        <th mat-header-cell *matHeaderCellDef> Invoice Number </th>
+        <td mat-cell *matCellDef="let costing"> {{costing.invoice_number}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="invoice_basic_amount">
+        <th mat-header-cell *matHeaderCellDef> Invoice Basic </th>
+        <td mat-cell *matCellDef="let costing"> {{costing.invoice_basic_amount}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="invoice_tax_amount">
+        <th mat-header-cell *matHeaderCellDef> Invoice Tax </th>
+        <td mat-cell *matCellDef="let costing"> {{costing.invoice_tax_amount}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="invoice_total_amount">
+        <th mat-header-cell *matHeaderCellDef> Invoice Total </th>
+        <td mat-cell *matCellDef="let costing"> {{costing.invoice_total_amount}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="costing_files" >
+        <th mat-header-cell *matHeaderCellDef> costing_files </th>
+        <td mat-cell *matCellDef="let costing"> {{costing.costing_files}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef='actions'>
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let row">
+            <button md-raised-button >Edit</button> 
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                    [ngClass]="{'highlight': selectedRowIndex == row.id}"
+                    (click)="selectedRow(row)"
+                    (mouseover)="row.hovered = true"
+                    (mouseout)="row.hovered = false"></tr>
+    </table>
+  </div>
+</nb-card-body>
+<nb-card-footer>
+  <div class="row justify-content-center align-item-center">
+    <div class="col-lg-5">
+      <button nbButton (click)=addCosting(true) outline nbTooltip="ADD COSTING" nbTooltipPlacement="top">
+        <nb-icon icon="plus-outline" pack="eva"></nb-icon>
+      </button>
+      <button nbButton (click)=editCosting(true)  outline nbTooltip="EDIT COSTING" nbTooltipPlacement="top">
+        <nb-icon icon="edit-2" pack="eva"></nb-icon>
+      </button>
+      <button nbButton (click)=deleteCosting() outline nbTooltip="DELETE COSTING" nbTooltipPlacement="top">
+        <nb-icon icon="trash-2" pack="eva" ></nb-icon>
+      </button>
+      <button nbButton (click)="pdfDownload()" outline nbTooltip="PDF Download" nbTooltipPlacement="top">
+        <nb-icon icon="download-outline" pack="eva"></nb-icon>
+      </button>
+      <button nbButton (click)=refresh() outline nbTooltip="REFRESH" nbTooltipPlacement="top">
+        <nb-icon icon="sync" pack="eva"></nb-icon>
+      </button>
+    </div>
+  </div>  
+</nb-card-footer>

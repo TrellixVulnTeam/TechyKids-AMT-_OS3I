@@ -1,40 +1,35 @@
 <div class="row justify-content-center align-item-center wow fadeInUp mt-3" data-wow-delay="100ms">
   <div class="col-md-12">
-    <nb-card>
-    <nb-card-header class="bg-info text-center text-white text-uppercase">bidding Creation</nb-card-header>
-      <nb-card-body>
-        <div class="row">
-          <!-- 1 -->
-          <div class="col-sm-3">
-            <div class="input-group">
-                <input type="text" required>
-                <label>field name</label>
-            </div>
-          </div>
-          <!-- 2 -->
-          <div class="col-sm-3">
-            <div class="input-group">
-                <input type="text" required>
-                <label>field name</label>
-            </div>
-          </div>
-          <!-- 3 -->
-          <div class="col-sm-3">
-            <div class="input-group">
-                <input type="text" required>
-                <label>field name</label>
-            </div>
-          </div>
-          <!-- 4 -->
-          <div class="col-sm-3">
-            <div class="input-group">
-                <input type="text" required>
-                <label>field name</label>
-            </div>
-          </div>                
-            <!-- close -->
-        </div>
-      </nb-card-body>
-    </nb-card>
+      <nb-reveal-card [showToggleButton]="false" [revealed]="revealed">
+          <nb-card-front>
+            <nb-card>
+              <nb-card-header class="bg-info text-white text-uppercase">
+                <div class="row justify-content-end">
+                  <div class="col-md-6">
+                      <span class="float-right">Costing</span>
+                  </div>
+                  <div class="col-md-6">
+                  <div class="btn-group float-right">
+                      <input type="Search" nbInput fieldSize="small" (keyup) ="search(searching.value)" #searching shape="semi-round" placeholder="Search" >
+                  </div>
+                  </div>
+                </div>
+              </nb-card-header>
+              <ngx-costing-table (toggleView)="revealed=$event" (costing_add)="costing_toggle_decide=$event" (costingEditDataGet)="costing_edit_information=$event"></ngx-costing-table>
+            </nb-card>
+          </nb-card-front>
+          <nb-card-back>
+             <nb-card *ngIf="costing_toggle_decide; else costing_edit">
+                <nb-card-header class="bg-info text-center text-white text-uppercase">COSTING ADD</nb-card-header>
+                <ngx-costing-add (toggleView)="revealed=$event"></ngx-costing-add>
+            </nb-card>
+            <ng-template #costing_edit>    
+              <nb-card>
+                <nb-card-header class="bg-info text-center text-white text-uppercase">COSTING EDIT</nb-card-header>
+                <ngx-costing-edit [costing_edit_information]="costing_edit_information" (toggleView)="revealed=$event"></ngx-costing-edit>
+              </nb-card>
+            </ng-template> 
+          </nb-card-back>
+      </nb-reveal-card>
   </div>
 </div>

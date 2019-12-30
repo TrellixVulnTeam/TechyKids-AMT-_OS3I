@@ -1,0 +1,12 @@
+<h5 mat-dialog-title>Delete Costing</h5>
+<hr>
+<div mat-dialog-content>
+  <div class="mat-typography">
+    <h6 class="font-weight-normal"> Are you sure.! You want to delete the Costing {{data.costing_id}}...!</h6>
+  </div>
+</div>
+<hr>
+<div mat-dialog-actions class="float-right">
+    <button mat-stroked-button color="primary" class="mat-card-buttons" (click)="deleteCosting(data.costing_id)" cdkFocusInitial ><mat-icon matPrefix>delete</mat-icon><b> DELETE</b></button>
+    <button mat-stroked-button color="warn" class="mat-card-buttons" (click)="costingDeleteComponentMatCardClose()"><mat-icon matPrefix>cancel</mat-icon><b> CANCEL</b></button>
+</div>

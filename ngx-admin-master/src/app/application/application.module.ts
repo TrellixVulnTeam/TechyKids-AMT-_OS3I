@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeModule } from '../@theme/theme.module';
-import { FormsModule }    from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule }    from '@angular/forms'; 
 
 import { NgxEchartsModule } from 'ngx-echarts';
 
@@ -40,6 +40,10 @@ import { CostingmanagementComponent } from './costingmanagement/costingmanagemen
 import { VendoAddComponent } from './vendormanagement/vendo-add/vendo-add.component';
 import { VendorTableComponent } from './vendormanagement/vendor-table/vendor-table.component';
 import { VendorEditComponent } from './vendormanagement/vendor-edit/vendor-edit.component';
+import { CostingAddComponent } from './costingmanagement/costing-add/costing-add.component';
+import { CostingEditComponent } from './costingmanagement/costing-edit/costing-edit.component';
+import { CostingDeleteComponent } from './costingmanagement/costing-delete/costing-delete.component';
+import { CostingTableComponent } from './costingmanagement/costing-table/costing-table.component';
 
 
 const COMPONENTS = [
@@ -48,13 +52,18 @@ const COMPONENTS = [
   VendorPieComponent,
   VendormanagementComponent,
   VendorDeleteComponent,
+  VendorEditComponent,
   VendoAddComponent,
   VendorTableComponent,
   CostingmanagementComponent,
+  CostingDeleteComponent,
+  CostingTableComponent,
+  CostingAddComponent,
+  CostingEditComponent,
 ];
 
 @NgModule({
-  declarations: [COMPONENTS, VendorEditComponent,],
+  declarations: [COMPONENTS,],
   imports: [
     CommonModule,
     ApplicationRoutingModule,
@@ -80,8 +89,9 @@ const COMPONENTS = [
     MatFormFieldModule,
     MatDialogModule,
     NgxEchartsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  entryComponents: [VendorDeleteComponent],
+  entryComponents: [VendorDeleteComponent,CostingDeleteComponent],
 })
 export class ApplicationModule { }

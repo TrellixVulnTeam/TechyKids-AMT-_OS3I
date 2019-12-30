@@ -1,0 +1,113 @@
+<nb-card-body class="row justify-content-center align-item-center mt-3 ml-1 mr-1">
+    <form  [formGroup]="CostingEditForm"  class="costing-edit-form" novalidate>
+      <div class="row">
+        <div class="col-sm-4" style="display: none"> 
+          <div class="input-group">
+              <input type="number" formControlName="vendor" [ngModel]="costing_edit_information?.vendor"/>
+              <label>Vendor Id</label>
+          </div>
+        </div>
+        <div class="col-sm-4" style="display: none">
+          <div class="input-group">
+              <input type="text" formControlName="id" [ngModel]="costing_edit_information?.id"/>
+              <label>Costing Id</label>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="input-group">
+              <input type="text" formControlName="vendor_name" [ngModel]="costing_edit_information?.vendor_name"/>
+              <label>Vendor Name</label>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="input-group">
+              <input type="number" formControlName="invoice_number" [ngModel]="costing_edit_information?.invoice_number"/>
+              <label>Invoice Number</label>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="input-group">
+              <input type="date" formControlName="invoice_date" [ngModel]="costing_edit_information?.invoice_date"/>
+              <label>Invoice Date</label>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="input-group">
+              <input type="text" formControlName="invoice_period" [ngModel]="costing_edit_information?.invoice_period"/>
+              <label>Invoice Period</label>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="input-group">
+              <input type="text" formControlName="invoice_description" [ngModel]="costing_edit_information?.invoice_description"/>
+            <label>Invoice Description</label>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="input-group">
+            <input type="number" (keyup)="invoice_total_calculation(invoice_basic_amount.value,invoice_tax_amount.value)" #invoice_basic_amount formControlName="invoice_basic_amount" [ngModel]="costing_edit_information?.invoice_basic_amount" step="0.01"/>
+            <label>Invoice Basic</label>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="input-group">
+            <input type="number" (keyup)="invoice_total_calculation(invoice_tax_amount.value, invoice_basic_amount.value)" #invoice_tax_amount formControlName="invoice_tax_amount" [ngModel]="costing_edit_information?.invoice_tax_amount" step="0.01" />
+            <label>Invoice Tax</label>
+          </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+              <input type="number" formControlName="invoice_total_amount" [ngModel]="costing_edit_information?.invoice_total_amount" />
+              <label>Invoice Total Amount</label>
+            </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="input-group">
+              <input type="text" formControlName="payment_details" [ngModel]="costing_edit_information?.payment_details"/>
+            <label>Payment Details</label>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="input-group">
+              <input type="text" formControlName="mode" [ngModel]="costing_edit_information?.mode"/>
+            <label>Mode</label>
+          </div>
+        </div>
+        <div class="col-sm-4" >
+          <div class="input-group">
+            <button  class="btn btn-outline-primary font-weight-bold btn-block" style="width: 100%"  (click)="costing_files.click()"><span>Select PDF</span></button>
+            <input #costing_files type="file" (change)="onFileSelect($event)" [ngModel]="costing_edit_information?.costing_files" formControlName="costing_files" accept="application/pdf" style="visibility: hidden;" />
+          </div>
+        </div>
+        
+      </div>
+    </form> 
+  </nb-card-body>
+  <nb-card-footer>
+  <div class="row justify-content-center align-item-center ">
+      <div class="col-sm-9"></div>
+      <div class="col-sm-3">
+          <!-- submit button -->
+        <div class="input-group">
+          <button type="button" 
+                  nbButton
+                  status="success"
+                  size="medium" 
+                  class="mr-3" 
+                  (click)="updateCosting()"
+                  cdkFocusInitial>
+            Update
+          </button>
+          <!-- cancel button -->
+          <button type="button" 
+                  nbButton 
+                  status="danger" 
+                  size="medium" 
+                  (click)="cancel()"
+                  >
+            Cancel
+          </button>
+        </div>
+      </div>
+  </div>  
+  </nb-card-footer>
